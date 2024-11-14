@@ -1,5 +1,5 @@
 from data.database import User, session
-from question import question
+from register.question import question
 from rich import print
 from rich.table import Table
 from faker import Faker

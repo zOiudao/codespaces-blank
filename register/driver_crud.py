@@ -1,5 +1,5 @@
 from data.database import Driver, User, DriverEntry, Work, session
-from question import question
+from register.question import question
 from rich import print
 from rich.table import Table
 from faker import Faker
