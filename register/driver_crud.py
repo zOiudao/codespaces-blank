@@ -46,10 +46,10 @@ class Drivers:
     
     
     def read(self):
-        table = Table(show_lines = True)
+        table = Table(show_lines = True, style='blue')
         cab = ['id', 'nome', 'cpf', 'transportadora', 'placa', 'hora']
         for i in range(len(cab)):
-            table.add_column(cab[i].upper(), no_wrap=True)
+            table.add_column(cab[i].upper(), no_wrap = True, style='cyan')
         for i in session.query(Driver).all():
             nome = f'{i.first_name} {i.last_name}'
             table.add_row(
@@ -63,8 +63,9 @@ class Drivers:
         return print(table)
     
     
-    def update(self, _id):
+    def update(self):
         self.read()
+        _id = int(input('Digite o ID que deseja editar: '))
         try:
             up = session.query(Driver).filter_by(id=_id).one()
         except:
@@ -92,8 +93,9 @@ class Drivers:
         return print(f'{up.first_name} Editado com sucesso!')
     
     
-    def delete(self, _id):
+    def delete(self):
         self.read()
+        _id = int(input('Digite o ID que deseja deletar: '))
         try:
             d = session.query(Driver).filter_by(id=_id).one()
         except:

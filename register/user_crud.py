@@ -32,10 +32,10 @@ class Users:
         
 
     def read(self):
-        table = Table(show_lines=True)
+        table = Table(show_lines=True, style='blue')
         cab = ['ID', 'nome', 'cpf', 'hora']
         for i in range(len(cab)):
-            table.add_column(cab[i].upper(), no_wrap=True)
+            table.add_column(cab[i].upper(), no_wrap = True, style='cyan')
         for i in session.query(User).all():
             name = f'{i.first_name} {i.last_name}'
             table.add_row(
@@ -47,8 +47,9 @@ class Users:
         return print(table)
 
 
-    def update(self, _id:int):
+    def update(self):
         self.read()
+        _id = int(input('Digite o ID que deseja editar: '))
         try:
             up = session.query(User).filter_by(id=_id).one()
         except:
@@ -70,7 +71,9 @@ class Users:
         return print(f'{up.first_name} \n-Editado com sucesso!')
 
 
-    def delete(self, _id:int):
+    def delete(self):
+        self.read()
+        _id = int(input('Digite o ID que deseja deletar: '))
         try:
             _delete = session.query(User).filter_by(id=_id).one()
         except:
